@@ -16,25 +16,24 @@ public class Reservation
     private String reservationID;;
     private LocalDate date;
     private String status;
+    private LocalDate expiryDate;
 
 
     public Reservation(Builder builder){
         this.reservationID = builder.reservationID;
         this.date = builder.date;
         this.status = builder.status;
+        this.expiryDate = builder.expiryDate;
     }
     public String toString(){
         String reserveInfo =
                 "Reservation" + " " + reservationID + " "+
-                        "Local Date" + date + " " + "Status" + " " + status;
+                        "Local Date" + date + " " + "Status" + " " + status + "" + "Expiry Date" + expiryDate;
 
         return reserveInfo;
     }
 
-    public String getReservationID() {
-
-        return reservationID;
-    }
+    public String getReservationID() {return reservationID;}
 
     public LocalDate getDate() {
         return date;
@@ -44,27 +43,39 @@ public class Reservation
         return status;
     }
 
+    public LocalDate getExpiryDate() {return expiryDate;}
+
     public static class Builder{
         private String reservationID;
         private LocalDate date;
         private String status;
+        private LocalDate expiryDate;
 
 
-        public Builder setReservationID(String reservationID){
+        public Builder(String reservationID, LocalDate date, String status){
             this.reservationID = reservationID;
-            return this;
-        }
-        public Builder setDate( LocalDate date){
             this.date = date;
+            this.status = status;
+
+        }
+        public Builder setExpiryDate(LocalDate expiryDate){
+            this.expiryDate = expiryDate;
             return this;
+
         }
 
-        public Builder setStatus(String Status){
-            this.status = status;
-            return this;
-        }
 
         public  Reservation build(){
+            //VALIDATION FOR REQUIRED ATTRIBUTES
+            if(reservationID == null || reservationID.isEmpty()){
+                throw new  IllegalArgumentException("Reservation ID required");
+            }
+            if(date == null){
+                throw new IllegalArgumentException("Date required");
+            }
+            if(status == null || status.isEmpty()){
+                throw new IllegalArgumentException("Status is required");
+            }
             return new Reservation(this);
 
         }
