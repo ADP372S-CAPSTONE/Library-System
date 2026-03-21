@@ -57,8 +57,8 @@ public class Loan {
             return this;
         }
 
-        public void setIssue(localDate issueDate) {
-            this, issueDate = issueDate;
+        public void setIssue(LocalDate issueDate) {
+            this.issueDate = issueDate;
             return this;
         }
 
@@ -72,7 +72,7 @@ public class Loan {
             return this;
         }
 
-        public loan build() {
+        public Loan build() {
             return new Loan(this);
         }
     }
