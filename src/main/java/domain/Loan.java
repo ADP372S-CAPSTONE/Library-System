@@ -1,7 +1,7 @@
 
 package domain;
-/**
- * Authour: Sinazo Ntsimbi
+/*
+ * Author: Sinazo Ntsimbi
  * 222765208
  */
 import java.time.LocalDate;
@@ -9,8 +9,6 @@ import java.util.Objects;
 
 public class Loan
 {
-
-//<<<<<<< 222765208
     private String loanId;
     private LocalDate issueDate;
     private LocalDate dueDate;
@@ -40,6 +38,7 @@ public class Loan
     }
 
 
+   @Override
     public String toString() {
         return "Loan{" + "loanId='" + loanId + '\'' +
                 ", issueDate=" + issueDate +
@@ -60,7 +59,7 @@ public class Loan
             return this;
         }
 
-        public Builder setIssue(LocalDate issueDate) {
+        public Builder setIssueDate(LocalDate issueDate) {
             this.issueDate = issueDate;
             return this;
         }
@@ -76,8 +75,20 @@ public class Loan
         }
 
         public Loan build() {
-            return new Loan(this);
-        }
+                if (loanId == null || !loanId.startsWith("L")) {
+                    throw new IllegalArgumentException("Invalid loan ID");
+                }
+
+                if (issueDate == null) {
+                    throw new IllegalArgumentException("Issue date is required");
+                }
+
+                if (dueDate == null || dueDate.isBefore(issueDate)) {
+                    throw new IllegalArgumentException("Invalid due date");
+                }
+
+                return new Loan(this);
+            }
     }
 }
 
