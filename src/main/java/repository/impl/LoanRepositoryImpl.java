@@ -1,7 +1,7 @@
 package repository.impl;
 
-import domain.Book;
-import repository.BookRepository;
+import domain.Loan;
+import repository.LoanRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,27 +9,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class BookRepositoryImpl implements BookRepository {
+public class LoanRepositoryImpl implements LoanRepository {
 
-	private final Map<String, Book> storage = new HashMap<>();
+	private final Map<String, Loan> storage = new HashMap<>();
 
-	private String keyFor(Book book) {
-		return String.valueOf(book.hashCode());
+	private String keyFor(Loan loan) {
+		return String.valueOf(loan.hashCode());
 	}
 
 	@Override
-	public Book create(Book entity) {
+	public Loan create(Loan entity) {
 		storage.put(keyFor(entity), entity);
 		return entity;
 	}
 
 	@Override
-	public Optional<Book> read(String id) {
+	public Optional<Loan> read(String id) {
 		return Optional.ofNullable(storage.get(id));
 	}
 
 	@Override
-	public Book update(Book entity) {
+	public Loan update(Loan entity) {
 		storage.put(keyFor(entity), entity);
 		return entity;
 	}
@@ -40,7 +40,7 @@ public class BookRepositoryImpl implements BookRepository {
 	}
 
 	@Override
-	public List<Book> findAll() {
+	public List<Loan> findAll() {
 		return new ArrayList<>(storage.values());
 	}
 }

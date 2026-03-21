@@ -7,5 +7,5 @@ package repository;
 
 import domain.Librarian;
 
-public interface LibrarianRepository extends IRepository<Librarian> {
+public interface LibrarianRepository extends IRepository<Librarian, String> {
 }

@@ -7,5 +7,12 @@ package repository;
 
 import domain.Category;
 
-public interface CategoryRepository extends IRepository<Category> {
+import java.util.List;
+import java.util.Optional;
+
+public interface CategoryRepository extends IRepository<Category, String> {
+    // Additional query methods specific to Category
+    Optional<Category> findByName(String name);
+    List<Category> findByNameContaining(String keyword);
+    boolean existsByName(String name);
 }

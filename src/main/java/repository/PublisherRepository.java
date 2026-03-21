@@ -7,5 +7,7 @@ package repository;
 
 import domain.Publisher;
 
-public interface PublisherRepository extends IRepository<Publisher> {
+public interface PublisherRepository extends IRepository<Publisher, String>
+{
+
 }

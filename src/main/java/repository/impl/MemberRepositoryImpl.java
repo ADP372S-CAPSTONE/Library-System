@@ -8,49 +8,46 @@ package repository.impl;
 import domain.Member;
 import repository.MemberRepository;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class MemberRepositoryImpl implements MemberRepository {
-    private final HashMap<String, Member> memberStore = new HashMap<>();
-    private static MemberRepositoryImpl instance = null;
 
-    private MemberRepositoryImpl() {}
+    private final Map<String, Member> storage = new HashMap<>();
 
-    public static MemberRepositoryImpl getInstance() {
-        if (instance == null) instance = new MemberRepositoryImpl();
-        return instance;
+    private String keyFor(Member member) {
+        return String.valueOf(member.hashCode());
     }
 
     @Override
-    public Member create(Member member) {
-        if (member == null || memberStore.containsKey(member.getMemberId())) return null;
-        memberStore.put(member.getMemberId(), member);
-        return member;
+    public Member create(Member entity) {
+        storage.put(keyFor(entity), entity);
+        return entity;
     }
 
     @Override
-    public Member read(String id) {
-        return memberStore.getOrDefault(id, null);
+    public Optional<Member> read(String id) {
+        return Optional.ofNullable(storage.get(id));
     }
 
     @Override
-    public Member update(Member member) {
-        if (member == null || !memberStore.containsKey(member.getMemberId())) return null;
-        memberStore.put(member.getMemberId(), member);
-        return member;
+    public Member update(Member entity) {
+        storage.put(keyFor(entity), entity);
+        return entity;
     }
 
     @Override
     public boolean delete(String id) {
-        if (!memberStore.containsKey(id)) return false;
-        memberStore.remove(id);
-        return true;
+        return storage.remove(id) != null;
     }
 
     @Override
-    public Collection<Member> getAll() {
-        return memberStore.values();
+    public List<Member> findAll() {
+        return new ArrayList<>(storage.values());
     }
+
 }
 

@@ -7,5 +7,5 @@ package repository;
 
 import domain.Member;
 
-public interface MemberRepository extends IRepository<Member> {
+public interface MemberRepository extends IRepository<Member, String> {
 }

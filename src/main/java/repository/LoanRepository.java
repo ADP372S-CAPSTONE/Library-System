@@ -7,5 +7,5 @@ package repository;
 
 import domain.Loan;
 
-public interface LoanRepository extends IRepository<Loan> {
+public interface LoanRepository extends IRepository<Loan, String> {
 }
