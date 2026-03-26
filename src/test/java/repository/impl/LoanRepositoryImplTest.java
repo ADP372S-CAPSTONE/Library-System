@@ -1,7 +1,7 @@
-/* LoanRepositoryImplTest.java
-   Loan repository implementation test
-   Author: Sinazo Ntsimbi (222765208)
-   Date: 23 March 2026
+/** LoanRepositoryImplTest.java
+ * Loan repository implementation test
+ * Author: Sinazo Ntsimbi 222765208
+ * Date: 23 March 2026
 */
 package repository.impl;
 
@@ -18,7 +18,7 @@ class LoanRepositoryImplTest {
 
     @Test
     void testCreate() {
-        LoanRepositoryImpl repository = new LoanRepositoryImpl();
+        LoanRepositoryImpl repository = LoanRepositoryImpl.getInstance();
         Loan loan = new Loan.Builder()
                 .setLoanId("L001")
                 .setIssueDate(LocalDate.of(2026, 3, 1))
@@ -34,7 +34,7 @@ class LoanRepositoryImplTest {
 
     @Test
     void testRead() {
-        LoanRepositoryImpl repository = new LoanRepositoryImpl();
+        LoanRepositoryImpl repository = LoanRepositoryImpl.getInstance();
         Loan loan = new Loan.Builder()
                 .setLoanId("L002")
                 .setIssueDate(LocalDate.of(2026, 3, 2))
@@ -52,7 +52,7 @@ class LoanRepositoryImplTest {
 
     @Test
     void testUpdate() {
-        LoanRepositoryImpl repository = new LoanRepositoryImpl();
+        LoanRepositoryImpl repository = LoanRepositoryImpl.getInstance();
         Loan loan = new Loan.Builder()
                 .setLoanId("L003")
                 .setIssueDate(LocalDate.of(2026, 3, 3))
@@ -78,7 +78,7 @@ class LoanRepositoryImplTest {
 
     @Test
     void testDelete() {
-        LoanRepositoryImpl repository = new LoanRepositoryImpl();
+        LoanRepositoryImpl repository = LoanRepositoryImpl.getInstance();
         Loan loan = new Loan.Builder()
                 .setLoanId("L004")
                 .setIssueDate(LocalDate.of(2026, 3, 4))
@@ -96,7 +96,7 @@ class LoanRepositoryImplTest {
 
     @Test
     void testGetAll() {
-        LoanRepositoryImpl repository = new LoanRepositoryImpl();
+        LoanRepositoryImpl repository = LoanRepositoryImpl.getInstance();
         Loan loan1 = new Loan.Builder()
                 .setLoanId("L005")
                 .setIssueDate(LocalDate.of(2026, 3, 5))
@@ -115,7 +115,7 @@ class LoanRepositoryImplTest {
         Collection<Loan> allLoans = repository.getAll();
 
         assertNotNull(allLoans);
-        assertEquals(2, allLoans.size());
+        assertTrue(allLoans.size() >= 2);
     }
 }
 

@@ -13,7 +13,7 @@ class LibrarianRepositoryImplTest {
 
     @Test
     void testCreateReadUpdateDelete() {
-        LibrarianRepositoryImpl repository = new LibrarianRepositoryImpl();
+        LibrarianRepositoryImpl repository = LibrarianRepositoryImpl.getInstance();
 
         Librarian librarian = new Librarian.Builder().setLibrarianId("L001").setName("Senzo").setEmail("senzo@email.com").setNumber("0721111111").build();
         repository.create(librarian);

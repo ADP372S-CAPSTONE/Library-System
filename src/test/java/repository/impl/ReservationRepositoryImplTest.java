@@ -1,7 +1,7 @@
 /* ReservationRepositoryImplTest.java
    Reservation repository implementation test
    Author: Abulele Ntwanambi (218276400)
-   Date: 23 March 2026
+   Date: 22 March 2026
 */
 package repository.impl;
 
@@ -18,7 +18,7 @@ class ReservationRepositoryImplTest {
 
     @Test
     void testCreate() {
-        ReservationRepositoryImpl repository = new ReservationRepositoryImpl();
+        ReservationRepositoryImpl repository = ReservationRepositoryImpl.getInstance();
         Reservation reservation = new Reservation.Builder("R001", LocalDate.now(), "Available")
                 .setExpiryDate(LocalDate.now().plusDays(2))
                 .build();
@@ -32,7 +32,7 @@ class ReservationRepositoryImplTest {
 
     @Test
     void testRead() {
-        ReservationRepositoryImpl repository = new ReservationRepositoryImpl();
+        ReservationRepositoryImpl repository = ReservationRepositoryImpl.getInstance();
         Reservation reservation = new Reservation.Builder("R002", LocalDate.now(), "Pending")
                 .setExpiryDate(LocalDate.now().plusDays(3))
                 .build();
@@ -48,7 +48,7 @@ class ReservationRepositoryImplTest {
 
     @Test
     void testUpdate() {
-        ReservationRepositoryImpl repository = new ReservationRepositoryImpl();
+        ReservationRepositoryImpl repository = ReservationRepositoryImpl.getInstance();
         Reservation reservation = new Reservation.Builder("R003", LocalDate.now(), "Available")
                 .setExpiryDate(LocalDate.now().plusDays(2))
                 .build();
@@ -69,7 +69,7 @@ class ReservationRepositoryImplTest {
 
     @Test
     void testDelete() {
-        ReservationRepositoryImpl repository = new ReservationRepositoryImpl();
+        ReservationRepositoryImpl repository = ReservationRepositoryImpl.getInstance();
         Reservation reservation = new Reservation.Builder("R004", LocalDate.now(), "Available")
                 .setExpiryDate(LocalDate.now().plusDays(2))
                 .build();
@@ -85,7 +85,7 @@ class ReservationRepositoryImplTest {
 
     @Test
     void testGetAll() {
-        ReservationRepositoryImpl repository = new ReservationRepositoryImpl();
+        ReservationRepositoryImpl repository = ReservationRepositoryImpl.getInstance();
         Reservation reservation1 = new Reservation.Builder("R005", LocalDate.now(), "Available")
                 .setExpiryDate(LocalDate.now().plusDays(2))
                 .build();
@@ -100,7 +100,7 @@ class ReservationRepositoryImplTest {
         Collection<Reservation> allReservations = repository.getAll();
 
         assertNotNull(allReservations);
-        assertEquals(2, allReservations.size());
+        assertTrue(allReservations.size() >= 2);
     }
 }
 

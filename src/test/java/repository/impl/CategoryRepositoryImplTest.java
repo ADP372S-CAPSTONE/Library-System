@@ -13,7 +13,7 @@ class CategoryRepositoryImplTest {
 
     @Test
     void testCreateReadUpdateDelete() {
-        CategoryRepositoryImpl repository = new CategoryRepositoryImpl();
+        CategoryRepositoryImpl repository = CategoryRepositoryImpl.getInstance();
 
         Category category = new Category.Builder("C001", "Software Engineering").setDescription("SE books").build();
         repository.create(category);

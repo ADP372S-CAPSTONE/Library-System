@@ -17,7 +17,7 @@ class BookRepositoryImplTest {
 
     @Test
     void testCreate() {
-        BookRepositoryImpl repository = new BookRepositoryImpl();
+        BookRepositoryImpl repository = BookRepositoryImpl.getInstance();
         Book book = new Book.Builder("B001", "9780134685991", "Effective Java")
                 .author("Joshua Bloch")
                 .build();
@@ -31,13 +31,13 @@ class BookRepositoryImplTest {
 
     @Test
     void testRead() {
-        BookRepositoryImpl repository = new BookRepositoryImpl();
+        BookRepositoryImpl repository = BookRepositoryImpl.getInstance();
         Book book = new Book.Builder("B002", "9780596007126", "Head First Java")
                 .author("Bert Bates")
                 .build();
 
         repository.create(book);
-        String key = book.hashCode() + "";
+        String key = book.getBookId();
 
         Optional<Book> foundBook = repository.read(key);
 
@@ -47,13 +47,13 @@ class BookRepositoryImplTest {
 
     @Test
     void testUpdate() {
-        BookRepositoryImpl repository = new BookRepositoryImpl();
+        BookRepositoryImpl repository = BookRepositoryImpl.getInstance();
         Book book = new Book.Builder("B003", "9781491927281", "Learning Java")
                 .author("Patrick Niemeyer")
                 .build();
 
         repository.create(book);
-        String key = book.hashCode() + "";
+        String key = book.getBookId();
 
         Book updatedBook = new Book.Builder("B003", "9781491927281", "Learning Java - Updated Edition")
                 .author("Patrick Niemeyer")
@@ -68,13 +68,13 @@ class BookRepositoryImplTest {
 
     @Test
     void testDelete() {
-        BookRepositoryImpl repository = new BookRepositoryImpl();
+        BookRepositoryImpl repository = BookRepositoryImpl.getInstance();
         Book book = new Book.Builder("B004", "9781449355739", "Java 8 in Action")
                 .author("Raoul-Gabriel Urma")
                 .build();
 
         repository.create(book);
-        String key = book.hashCode() + "";
+        String key = book.getBookId();
 
         boolean deleted = repository.delete(key);
 
@@ -84,7 +84,7 @@ class BookRepositoryImplTest {
 
     @Test
     void testGetAll() {
-        BookRepositoryImpl repository = new BookRepositoryImpl();
+        BookRepositoryImpl repository = BookRepositoryImpl.getInstance();
         Book book1 = new Book.Builder("B005", "9780134685991", "Effective Java").build();
         Book book2 = new Book.Builder("B006", "9780596007126", "Head First Java").build();
 
@@ -94,7 +94,7 @@ class BookRepositoryImplTest {
         Collection<Book> allBooks = repository.getAll();
 
         assertNotNull(allBooks);
-        assertEquals(2, allBooks.size());
+        assertTrue(allBooks.size() >= 2);
     }
 }
 

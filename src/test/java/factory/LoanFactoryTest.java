@@ -1,10 +1,8 @@
-
-/*
-   Loan Factory Test
-   Author: Sinazo Ntsimbi (22765208)
-   Date: 22 March 2026.
-*/
-
+/**
+ *Author: Sinazo Ntsimbi
+ * 222765208
+ *
+ */
 package factory;
 
 import domain.Loan;
@@ -33,7 +31,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 		assertEquals(LocalDate.of(2026, 4, 4), loan.getDueDate());
 		assertNull(loan.getReturnDate());
 	}
-
 	@Test
 	void shouldCreateLoanUsingFactory() {
 
@@ -61,7 +58,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 					.build();
 		});
 	}
-
 	@Test
 	void shouldThrowExceptionWhenLoanIdIsInvalid() {
 
@@ -84,9 +80,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 					.build();
 		});
 	}
-
 	@Test
 	void shouldThrowExceptionWhenDueDateIsBeforeIssueDate() {
+
 
 		assertThrows(IllegalArgumentException.class, () -> {
 			new Loan.Builder()
@@ -94,9 +90,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 					.setIssueDate(LocalDate.now())
 					.setDueDate(LocalDate.now().minusDays(1))
 					.build();
-		});
+
+		 });
 	}
-}
+ }
 
 
 

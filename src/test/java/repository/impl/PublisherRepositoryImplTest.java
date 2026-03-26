@@ -13,7 +13,7 @@ class PublisherRepositoryImplTest {
 
     @Test
     void testCreateReadUpdateDelete() {
-        PublisherRepositoryImpl repository = new PublisherRepositoryImpl();
+        PublisherRepositoryImpl repository = PublisherRepositoryImpl.getInstance();
 
         Publisher publisher = new Publisher.Builder("P001", "Pearson").setPublisherAddress("Address").setPublisherEmail("pearson@email.com").setPublisherPhone("0111111111").build();
         repository.create(publisher);

@@ -15,10 +15,21 @@ import java.util.Optional;
 
 public class BookRepositoryImpl implements BookRepository {
 
+	private static BookRepositoryImpl instance;
 	private final Map<String, Book> storage = new HashMap<>();
 
+	private BookRepositoryImpl() {
+	}
+
+	public static synchronized BookRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new BookRepositoryImpl();
+		}
+		return instance;
+	}
+
 	private String keyFor(Book book) {
-		return book.hashCode() + "";
+		return book.getBookId();
 	}
 
 	@Override

@@ -1,4 +1,6 @@
 package repository.impl;
+// Author Abulele Ntwanambi 218276400
+//date : 22/03/2026
 
 import domain.Reservation;
 import repository.ReservationRepository;
@@ -12,7 +14,18 @@ import java.util.Optional;
 
 public class ReservationRepositoryImpl implements ReservationRepository {
 
+    private static ReservationRepositoryImpl instance;
     private final Map<String, Reservation> storage = new HashMap<>();
+
+    private ReservationRepositoryImpl() {
+    }
+
+    public static synchronized ReservationRepositoryImpl getInstance() {
+        if (instance == null) {
+            instance = new ReservationRepositoryImpl();
+        }
+        return instance;
+    }
 
     @Override
     public Reservation create(Reservation entity) {

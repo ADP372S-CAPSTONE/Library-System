@@ -13,7 +13,18 @@ import java.util.Optional;
 
 public class PublisherRepositoryImpl implements PublisherRepository {
 
+	private static PublisherRepositoryImpl instance;
 	private final Map<String, Publisher> storage = new HashMap<>();
+
+	private PublisherRepositoryImpl() {
+	}
+
+	public static synchronized PublisherRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new PublisherRepositoryImpl();
+		}
+		return instance;
+	}
 
 	@Override
 	public Publisher create(Publisher entity) {

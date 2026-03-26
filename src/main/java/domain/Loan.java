@@ -1,5 +1,5 @@
-/*
- * Authour: Sinazo Ntsimbi
+/**
+ * Author: Sinazo Ntsimbi
  * 222765208
  * Date: 16 March 2026
  */
@@ -11,10 +11,10 @@ import java.util.Objects;
 
 public class Loan {
 
-    private String loanId;
-    private LocalDate issueDate;
-    private LocalDate dueDate;
-    private LocalDate returnDate;
+    private final String loanId;
+    private final LocalDate issueDate;
+    private final LocalDate dueDate;
+    private final LocalDate returnDate;
 
     // Private constructor (Builder Pattern requirement)
     private Loan(Builder builder) {
@@ -41,6 +41,7 @@ public class Loan {
         return returnDate;
     }
 
+
     @Override
     public String toString() {
         return "Loan{" +
@@ -53,7 +54,6 @@ public class Loan {
 
     // Builder Class
     public static class Builder {
-
         private String loanId;
         private LocalDate issueDate;
         private LocalDate dueDate;
@@ -100,7 +100,7 @@ public class Loan {
             // returnDate can be null (book not yet returned)
 
             return new Loan(this);
-        }
+         }
     }
 }
 

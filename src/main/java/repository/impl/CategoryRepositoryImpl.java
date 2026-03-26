@@ -16,7 +16,18 @@ import java.util.Optional;
 
 public class CategoryRepositoryImpl implements CategoryRepository {
 
+	private static CategoryRepositoryImpl instance;
 	private final Map<String, Category> storage = new HashMap<>();
+
+	private CategoryRepositoryImpl() {
+	}
+
+	public static synchronized CategoryRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new CategoryRepositoryImpl();
+		}
+		return instance;
+	}
 
 	@Override
 	public Category create(Category entity) {

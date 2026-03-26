@@ -1,7 +1,7 @@
-/* LoanRepository.java
-   Loan repository interface
-   Author: Sinazo Ntsimbi (22765208)
-   Date: 13 March 2026.
+/**LoanRepository.java
+ *Loan repository interface
+ *Author: Sinazo Ntsimbi (22765208)
+ *Date: 13 March 2026.
 */
 package repository;
 

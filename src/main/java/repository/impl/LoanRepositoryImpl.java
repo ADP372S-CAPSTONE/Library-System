@@ -1,5 +1,7 @@
-/*Author:
-Date:
+/**
+ * Author: Sinazo Ntsimbi
+ * 222765208
+ * Date: 23 March 2026
 */
 
 package repository.impl;
@@ -14,7 +16,18 @@ import java.util.Optional;
 
 public class LoanRepositoryImpl implements LoanRepository {
 
+	private static LoanRepositoryImpl instance;
 	private final Map<String, Loan> storage = new HashMap<>();
+
+	private LoanRepositoryImpl() {
+	}
+
+	public static synchronized LoanRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new LoanRepositoryImpl();
+		}
+		return instance;
+	}
 
 	private String keyFor(Loan loan) {
 		return loan.getLoanId();
