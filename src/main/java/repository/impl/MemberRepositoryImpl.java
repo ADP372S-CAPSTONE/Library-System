@@ -1,6 +1,6 @@
 /* MemberRepositoryImpl.java
    Member repository implementation
-   Author: Nxasana Owenkosi 230240887
+   Author: Nomhle Njengele (216227488)
    Date: 13 March 2026
 */
 package repository.impl;
@@ -8,68 +8,49 @@ package repository.impl;
 import domain.Member;
 import repository.MemberRepository;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.*;
 
 public class MemberRepositoryImpl implements MemberRepository {
+    private final HashMap<String, Member> memberStore = new HashMap<>();
+    private static MemberRepositoryImpl instance = null;
 
-    private static MemberRepositoryImpl repository = null;
-    private final Map<String, Member> memberMap;
+    private MemberRepositoryImpl() {}
 
-    // Private constructor (Singleton)
-    private MemberRepositoryImpl() {
-        memberMap = new HashMap<>();
+    public static MemberRepositoryImpl getInstance() {
+        if (instance == null) instance = new MemberRepositoryImpl();
+        return instance;
     }
 
-    // Global access point
-    public static MemberRepositoryImpl getRepository() {
-        if (repository == null) {
-            repository = new MemberRepositoryImpl();
-        }
-        return repository;
-    }
-
-    // CREATE
     @Override
     public Member create(Member member) {
-        memberMap.put(member.getMemberID(), member);
+        if (member == null || memberStore.containsKey(member.getMemberId())) return null;
+        memberStore.put(member.getMemberId(), member);
         return member;
     }
 
-    // READ (Optional = best practice)
     @Override
-    public Optional<Member> read(String memberID) {
-        return Optional.ofNullable(memberMap.get(memberID));
+    public Member read(String id) {
+        return memberStore.getOrDefault(id, null);
     }
 
-    // UPDATE
     @Override
     public Member update(Member member) {
-        if (memberMap.containsKey(member.getMemberID())) {
-            memberMap.put(member.getMemberID(), member);
-            return member;
-        }
-        throw new RuntimeException("Member not found");
+        if (member == null || !memberStore.containsKey(member.getMemberId())) return null;
+        memberStore.put(member.getMemberId(), member);
+        return member;
     }
 
-    // DELETE
     @Override
-    public boolean delete(String memberID) {
-        return memberMap.remove(memberID) != null;
+    public boolean delete(String id) {
+        if (!memberStore.containsKey(id)) return false;
+        memberStore.remove(id);
+        return true;
     }
 
-    // READ ALL
     @Override
-    public List<Member> getAll() {
-        return new ArrayList<>(memberMap.values());
-    }
-
-    public void clear() {
-        memberMap.clear();
+    public Collection<Member> getAll() {
+        return memberStore.values();
     }
 }
 

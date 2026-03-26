@@ -1,11 +1,11 @@
 /* BookRepository.java
    Book repository interface
-   Author: Nomhle Njengele (216227488)
-   Date: 22 March 2026
+   Author: Tiyani Ngwana (231266731)
+   Date: 13 March 2026
 */
 package repository;
 
 import domain.Book;
 
-public interface BookRepository extends IRepository<Book, String> {
+public interface BookRepository extends IRepository<Book> {
 }
