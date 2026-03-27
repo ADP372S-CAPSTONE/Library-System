@@ -6,11 +6,7 @@ import domain.Reservation;
 import repository.ReservationRepository;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ReservationRepositoryImpl implements ReservationRepository {
 
@@ -56,20 +52,5 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     public Collection<Reservation> getAll() {
         return storage.values();
     }
-
-    @Override
-    public List<Reservation> findAllByDate(LocalDate date) {
-        return storage.values()
-                .stream()
-                .filter(r -> r.getDate().equals(date))
-                .toList();
-    }
-
-    @Override
-    public List<Reservation> findByExpiryDate(LocalDate expiryDate) {
-        return storage.values()
-                .stream()
-                .filter(r -> r.getExpiryDate().equals(expiryDate))
-                .toList();
-    }
 }
+
