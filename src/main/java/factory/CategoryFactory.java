@@ -20,7 +20,7 @@ public class CategoryFactory {
                 .build();
     }
 
-    // Helper method to generate next Category ID (optional utility)
+    // Helper method to generate next Category ID
     public static String generateCategoryId(String prefix, int number) {
         return String.format("%s%03d", prefix, number); // e.g., C001
     }

@@ -13,10 +13,10 @@ import java.util.Objects;
 
 public class Reservation
 {
-    private String reservationID;;
-    private LocalDate date;
-    private String status;
-    private LocalDate expiryDate;
+    private final String reservationID;;
+    private final LocalDate date;
+    private final String status;
+    private final LocalDate expiryDate;
 
 
     public Reservation(Builder builder){
@@ -26,11 +26,9 @@ public class Reservation
         this.expiryDate = builder.expiryDate;
     }
     public String toString(){
-        String reserveInfo =
-                "Reservation" + " " + reservationID + " "+
-                        "Local Date" + date + " " + "Status" + " " + status + "" + "Expiry Date" + expiryDate;
 
-        return reserveInfo;
+        return "Reservation" + " " + reservationID + " "+
+                "Local Date" + date + " " + "Status" + " " + status + "" + "Expiry Date" + expiryDate;
     }
 
     public String getReservationID() {return reservationID;}
@@ -46,9 +44,9 @@ public class Reservation
     public LocalDate getExpiryDate() {return expiryDate;}
 
     public static class Builder{
-        private String reservationID;
-        private LocalDate date;
-        private String status;
+        private final String reservationID;
+        private final LocalDate date;
+        private final String status;
         private LocalDate expiryDate;
 
 
@@ -81,6 +79,7 @@ public class Reservation
         }
     }
 
+    //End of program
 
 
 }

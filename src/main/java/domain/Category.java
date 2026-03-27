@@ -5,9 +5,6 @@
 */
 package domain;
 
-//Category domain class
-//Author: Ngwana Tiyani 231266731
-//Date: 16 March 2026
 
 public class Category {
 

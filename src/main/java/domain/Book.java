@@ -1,19 +1,25 @@
+
+/* Book.java
+   Book domain class
+   Author: Nomhle Njengele (216227488)
+   Date: 13 March 2026
+*/
+
 package domain;
 
-//Book domain class
-//Author:
-//Date:
 
+public class  Book {
 
-public class Book {
+    private final String bookId;
     private final String isbn;
     private final String title;
-    private String author;
-    private String subject;
-    private String publisher;
-    private int publicationYear;
+    private final String author;
+    private final String subject;
+    private final String publisher;
+    private final int publicationYear;
 
     private Book(Builder builder) {
+        this.bookId = builder.bookId;
         this.isbn = builder.isbn;
         this.title = builder.title;
         this.author = builder.author;
@@ -22,10 +28,19 @@ public class Book {
         this.publicationYear = builder.publicationYear;
     }
 
+    public String getBookId() { return bookId; }
+    public String getIsbn() { return isbn; }
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public String getSubject() { return subject; }
+    public String getPublisher() { return publisher; }
+    public int getPublicationYear() { return publicationYear; }
+
     @Override
     public String toString() {
         return "Book{" +
-                "isbn=" + isbn +
+                "bookId=" + bookId +
+                ", isbn=" + isbn +
                 ", title=" + title +
                 ", author=" + author +
                 ", subject=" + subject +
@@ -36,6 +51,7 @@ public class Book {
 
     public static class Builder {
 
+        private final String bookId;
         private final String isbn;
         private final String title;
         private String author;
@@ -43,7 +59,8 @@ public class Book {
         private String publisher;
         private int publicationYear;
 
-        public Builder(String isbn, String title) {
+        public Builder(String bookId, String isbn, String title) {
+            this.bookId = bookId;
             this.isbn = isbn;
             this.title = title;
         }
@@ -71,7 +88,7 @@ public class Book {
         public Book build() {
             return new Book(this);
 
-            //End of program
+            //End of program.
             
         }
     }

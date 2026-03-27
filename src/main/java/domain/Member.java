@@ -1,14 +1,12 @@
 /* Member.java
    Member domain class
    Author: Nxasana Owenkosi 230240887
+   Date: 13 March 2026
 */
 package domain;
 
 import java.util.Objects;
 
-// Member domain class
-//Author: 230240887 Owenkosi Nxasana
-//Date
 
 public class Member {
 
@@ -27,7 +25,6 @@ public class Member {
     }
 
     // Getters
-
     public String getMemberID() { return memberID; }
     public String getMemberName() { return memberName; }
     public String getMemberEmail() { return memberEmail; }
@@ -77,21 +74,35 @@ public class Member {
 
         public Member build() {
 
+            // ID validation
             if (memberID == null || memberID.trim().isEmpty()) {
                 throw new IllegalArgumentException("ID is required");
             }
-
             if (!memberID.matches("^M\\d{3}$")) {
                 throw new IllegalArgumentException("ID must be in format M001, M002, etc.");
             }
 
+            // Name validation
             if (memberName == null || memberName.trim().isEmpty()) {
                 throw new IllegalArgumentException("Name is required");
             }
 
+            // Email validation (optional)
             if (memberEmail != null && !memberEmail.trim().isEmpty()
                     && !memberEmail.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
                 throw new IllegalArgumentException("This email is invalid");
+            }
+
+            // Phone validation (optional)
+            if (memberPhone != null && !memberPhone.trim().isEmpty()
+                    && !memberPhone.matches("\\d{10}")) {
+                throw new IllegalArgumentException("Phone must be 10 digits");
+            }
+
+            // Membership date validation (optional)
+            if (membershipDate != null && !membershipDate.trim().isEmpty()
+                    && !membershipDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                throw new IllegalArgumentException("Date must be in format YYYY-MM-DD");
             }
 
             return new Member(this);

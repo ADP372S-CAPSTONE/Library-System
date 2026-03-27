@@ -1,7 +1,7 @@
 /* MemberRepository.java
-   Member repository interface
-   Author: Nomhle Njengele (216227488)
-   Date: 13 March 2026
+   Member repository interface.
+   Author: 230240887 Owenkosi Nxasana
+   Date:
 */
 package repository;
 

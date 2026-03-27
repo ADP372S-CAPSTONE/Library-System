@@ -1,7 +1,7 @@
 package factory;
 
 /* Librarian.java
-   Librarian domain class.
+   Librarian Factory Test.
    Author: Sinethemba Nyimbinya (220085870).
    Date: 16 March 2026.
 */
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LibrarianFactoryTest {
 
     @Test
-    void testCreatesLibrarianWithRequiedFeilds() {
+    void testCreatesLibrarianWithRequiredFields() {
 
 
         //Declaration

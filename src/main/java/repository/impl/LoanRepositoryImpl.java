@@ -1,20 +1,36 @@
+/**
+ * Author: Sinazo Ntsimbi
+ * 222765208
+ * Date: 23 March 2026
+*/
+
 package repository.impl;
 
 import domain.Loan;
 import repository.LoanRepository;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class LoanRepositoryImpl implements LoanRepository {
 
+	private static LoanRepositoryImpl instance;
 	private final Map<String, Loan> storage = new HashMap<>();
 
+	private LoanRepositoryImpl() {
+	}
+
+	public static synchronized LoanRepositoryImpl getInstance() {
+		if (instance == null) {
+			instance = new LoanRepositoryImpl();
+		}
+		return instance;
+	}
+
 	private String keyFor(Loan loan) {
-		return String.valueOf(loan.hashCode());
+		return loan.getLoanId();
 	}
 
 	@Override
@@ -40,7 +56,8 @@ public class LoanRepositoryImpl implements LoanRepository {
 	}
 
 	@Override
-	public List<Loan> findAll() {
-		return new ArrayList<>(storage.values());
+	public Collection<Loan> getAll() {
+		return storage.values();
 	}
 }
+

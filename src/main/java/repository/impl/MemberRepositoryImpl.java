@@ -1,6 +1,6 @@
 /* MemberRepositoryImpl.java
    Member repository implementation
-   Author: Nomhle Njengele (216227488)
+   Author: Nxasana Owenkosi 230240887
    Date: 13 March 2026
 */
 package repository.impl;
@@ -13,41 +13,63 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.*;
 
 public class MemberRepositoryImpl implements MemberRepository {
 
-    private final Map<String, Member> storage = new HashMap<>();
+    private static MemberRepositoryImpl repository = null;
+    private final Map<String, Member> memberMap;
 
-    private String keyFor(Member member) {
-        return String.valueOf(member.hashCode());
+    // Private constructor (Singleton)
+    private MemberRepositoryImpl() {
+        memberMap = new HashMap<>();
     }
 
+    // Global access point
+    public static MemberRepositoryImpl getRepository() {
+        if (repository == null) {
+            repository = new MemberRepositoryImpl();
+        }
+        return repository;
+    }
+
+    // CREATE
     @Override
-    public Member create(Member entity) {
-        storage.put(keyFor(entity), entity);
-        return entity;
+    public Member create(Member member) {
+        memberMap.put(member.getMemberID(), member);
+        return member;
     }
 
+    // READ (Optional = best practice)
     @Override
-    public Optional<Member> read(String id) {
-        return Optional.ofNullable(storage.get(id));
+    public Optional<Member> read(String memberID) {
+        return Optional.ofNullable(memberMap.get(memberID));
     }
 
+    // UPDATE
     @Override
-    public Member update(Member entity) {
-        storage.put(keyFor(entity), entity);
-        return entity;
+    public Member update(Member member) {
+        if (memberMap.containsKey(member.getMemberID())) {
+            memberMap.put(member.getMemberID(), member);
+            return member;
+        }
+        throw new RuntimeException("Member not found");
     }
 
+    // DELETE
     @Override
-    public boolean delete(String id) {
-        return storage.remove(id) != null;
+    public boolean delete(String memberID) {
+        return memberMap.remove(memberID) != null;
     }
 
+    // READ ALL
     @Override
-    public List<Member> findAll() {
-        return new ArrayList<>(storage.values());
+    public List<Member> getAll() {
+        return new ArrayList<>(memberMap.values());
     }
 
+    public void clear() {
+        memberMap.clear();
+    }
 }
 
