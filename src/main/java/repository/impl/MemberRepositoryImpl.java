@@ -40,7 +40,7 @@ public class MemberRepositoryImpl implements MemberRepository {
         return member;
     }
 
-    // READ (Optional = best practice)
+    // READ
     @Override
     public Optional<Member> read(String memberID) {
         return Optional.ofNullable(memberMap.get(memberID));

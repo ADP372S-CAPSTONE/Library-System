@@ -22,7 +22,7 @@ class MemberRepositoryImplTest {
         repository.clear(); // clean state for each test
     }
 
-    // Happy path CRUD operations
+    //  CRUD operations
     @Test
     void testCreateReadUpdateDelete() {
         // CREATE

@@ -51,7 +51,7 @@ public class Member {
         private String memberPhone;
         private String membershipDate;
 
-        // Required fields constructor
+        // fields constructor
         public Builder(String memberID, String memberName) {
             this.memberID = memberID;
             this.memberName = memberName;
@@ -87,19 +87,19 @@ public class Member {
                 throw new IllegalArgumentException("Name is required");
             }
 
-            // Email validation (optional)
+            // Email validation
             if (memberEmail != null && !memberEmail.trim().isEmpty()
                     && !memberEmail.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
                 throw new IllegalArgumentException("This email is invalid");
             }
 
-            // Phone validation (optional)
+            // Phone validation
             if (memberPhone != null && !memberPhone.trim().isEmpty()
                     && !memberPhone.matches("\\d{10}")) {
                 throw new IllegalArgumentException("Phone must be 10 digits");
             }
 
-            // Membership date validation (optional)
+            // Membership date validation
             if (membershipDate != null && !membershipDate.trim().isEmpty()
                     && !membershipDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
                 throw new IllegalArgumentException("Date must be in format YYYY-MM-DD");
